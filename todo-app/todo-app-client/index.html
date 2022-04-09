@@ -5,6 +5,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>To-do App</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&family=Roboto:wght@900&display=swap" rel="stylesheet">
       <link href="./assets/css/index.css" rel="stylesheet">
    </head>
    <body>
@@ -14,23 +17,36 @@
 
             <header class="header">
                <div class="header--container">
-
+                  <div class="text-logo">
+                     <h1>Todo Application:</h1>
+                  </div>
                </div>
             </header>
 
             <main class="main">
                <div class="main--container">
-
+                  <div class="form">
+                     <form id="form">
+                        <input class="form-input" type="text" name="user-input" placeholder="Add item">
+                        <button class="submit">+</button>
+                     </form>
+                  </div>
+                  <div id="todo-root">
+                     
+                  </div>
                </div>
             </main>
 
-            <footer clas="footer">
+            <footer class="footer">
                <div class="footer--container">
-
+                  <p>Fun little vanilla todo app.</p>
+                  <p>Build by <span class="bold">Dan Anderson</span></p>
                </div>
             </footer>
-
          </div>
+      </div>
+      <div id="error-notification">
+         <!-- Data will be populated with Javascript -->
       </div>
       <script src="./assets/scripts/index.js"></script>
    </body>
