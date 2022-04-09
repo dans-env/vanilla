@@ -11,7 +11,10 @@ app.use(bodyParser.json());
 
 app.post("/add-item", (req, res) => {
    mongoDB_Add(req.body);
-   res.send(req.body);
+});
+
+app.get("/get-items", async (req, res) => {
+   mongodb_GetAll(res);
 });
 
 app.get("/", (req, res) => {
@@ -34,6 +37,20 @@ const mongoDB_Add = async (data) => {
 
         console.log("MongoDB - One object added to collection: items");
         db.close();
+      });
+   });
+};
+
+const mongodb_GetAll = async (res) => {
+   MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+
+      const data_base = db.db("todo-app");
+
+      data_base.collection("items").find().toArray(function(err, result) {
+         if (err) throw err;
+         res.send(result);
+         db.close();
       });
    });
 };
