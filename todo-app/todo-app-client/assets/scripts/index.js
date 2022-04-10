@@ -1,7 +1,8 @@
 (function() {
 
+   let item_count = 0;
+
    const port = 4000
-   const item_count = 0;
    const item_root = document.getElementById("todo-root");
    const item_count_Element = document.getElementById("item-count");
    const form = document.getElementById("form");
@@ -44,7 +45,7 @@
    const handleFormSubmit = async (event) => {
       event.preventDefault();
       const formData = getUsersInputFromForm();
-      (formData) ? addItemTo_db(formData) && createTodoItem(formData) : showErrorNotification();
+      (formData) ? addItemTo_db(formData) && createTodoItem(formData) && incrementItemCount() : showErrorNotification();
       form.reset();
    };
 
@@ -55,6 +56,7 @@
 
    const addTodosToScreen = (itemsArray) => {
       itemsArray.forEach((item) => {
+         incrementItemCount();
          createTodoItem(item);
       });
    };
