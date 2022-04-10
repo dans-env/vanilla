@@ -58,11 +58,26 @@ body {
    font-size: 12px;
 }
 
+.error-no-items-found {
+   border-radius: 20px;
+   padding: 12px 15px;
+   background: rgb(187, 67, 67);
+}
+
+.error-no-items-found p {
+   text-align: center;
+   font-size: 12px;
+   color: #fff;
+}
+
 .header {
    background: #4d6275;
 }
 
 .header--container {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
    padding: 20px 40px;
 }
 
@@ -71,6 +86,11 @@ body {
    color: #fff;
    text-align: left;
    letter-spacing: 1px;
+}
+
+.number-of-items p {
+   font-size: 12px;
+   color: #fff;
 }
 
 .footer {

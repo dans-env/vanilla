@@ -1,15 +1,25 @@
 (function() {
 
    const port = 4000
+   const item_count = 0;
+   const item_root = document.getElementById("todo-root");
+   const item_count_Element = document.getElementById("item-count");
    const form = document.getElementById("form");
    const formSubmitButton = form.querySelector(".submit");
-   const root = document.getElementById("todo-root");
    const errorNotification = document.getElementById("error-notification");
 
    const initialLoad = async () => {
-      const itemsArray = await getItemsFrom_db();
-      addTodosToScreen(itemsArray);
+      try {
+         const itemsArray = await getItemsFrom_db();
+         addTodosToScreen(itemsArray);
+      } catch {
+         showServerConnectError();
+      }
    };
+
+   formSubmitButton.addEventListener("click", (event) => {
+      handleFormSubmit(event);
+   });
 
    const getItemsFrom_db = async () => {
       const data = await fetch(`http://localhost:${port}/get-items`);
@@ -31,8 +41,20 @@
       });
    };
 
+   const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      const formData = getUsersInputFromForm();
+      (formData) ? addItemTo_db(formData) && createTodoItem(formData) : showErrorNotification();
+      form.reset();
+   };
+
+   const getUsersInputFromForm = () => {
+      const formData = new FormData(form);
+      return formData.get("user-input");
+   };
+
    const addTodosToScreen = (itemsArray) => {
-      itemsArray.forEach(item => {
+      itemsArray.forEach((item) => {
          createTodoItem(item);
       });
    };
@@ -45,12 +67,7 @@
       (typeof inputValue === "string") ? itemParagraph.textContent = inputValue : itemParagraph.textContent = inputValue.todo
 
       newItem.append(itemParagraph);
-      root.append(newItem);
-   };
-
-   const getUsersInputFromForm = () => {
-      const formData = new FormData(form);
-      return formData.get("user-input");
+      item_root.append(newItem);
    };
 
    const showErrorNotification = () => {
@@ -62,17 +79,27 @@
       setTimeout(() => {
          errorNotification.style.display = "none";
       }, 4000);
-   }
+   };
 
-   formSubmitButton.addEventListener("click", (event) => {
-      handleFormSubmit(event);
-   });
+   const showServerConnectError = () => {
+      const messageContainer = document.createElement("div");
+      messageContainer.classList.add("error-no-items-found");
+      
+      const messageContainerText = document.createElement("p");
+      messageContainerText.textContent = "Sorry, we could not connect to the server."
 
-   const handleFormSubmit = async (event) => {
-      event.preventDefault();
-      const formData = getUsersInputFromForm();
-      (formData) ? addItemTo_db(formData) && createTodoItem(formData) : showErrorNotification();
-      form.reset();
+      messageContainer.append(messageContainerText);
+      item_root.append(messageContainer);
+   };
+
+   const incrementItemCount = () => {
+      item_count ++;
+      item_count_Element.innerHTML = item_count;
+   };
+
+   const decreaseItemCount = () => {
+      item_count --;
+      item_count_Element.innerHTML = item_count;
    };
 
    initialLoad();
