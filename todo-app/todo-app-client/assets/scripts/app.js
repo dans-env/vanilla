@@ -59,7 +59,7 @@
    const handleFormSubmit = async (event) => {
       event.preventDefault();
       const formData = getUsersInputFromForm();
-      (formData) ? addItemTo_db(formData) && createTodoItem(formData) && incrementItemCount() : showErrorNotification();
+      (formData) ? (addItemTo_db(formData), createTodoItem(formData), incrementItemCount()) : showErrorNotification();
       form.reset();
    };
 
