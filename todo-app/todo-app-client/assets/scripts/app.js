@@ -42,6 +42,10 @@
       });
    };
 
+   const removeItemFrom_db = () => {
+
+   };
+
    const handleFormSubmit = async (event) => {
       event.preventDefault();
       const formData = getUsersInputFromForm();
@@ -74,6 +78,21 @@
       newItem.append(itemParagraph);
       newItem.append(itemDeleteButton);
       item_root.append(newItem);
+
+      addDeleteEventListener(itemDeleteButton);
+   };
+
+   const addDeleteEventListener = (item) => {
+      item.addEventListener("click", () => {
+         deleteItem(item);
+      });
+   };
+
+   const deleteItem = (item) => {
+      const todoItem = item.parentNode;
+      //removeItemFrom_db(todoItem.children[0].textContent);
+      todoItem.remove();
+      decreaseItemCount();
    };
 
    const showErrorNotification = () => {

@@ -9,8 +9,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.delete("/remove-item", (req, res) => {
+   mongodb_remove(req.body);
+});
+
 app.post("/add-item", (req, res) => {
-   mongoDB_Add(req.body);
+   mongodb_Add(req.body);
 });
 
 app.get("/get-items", async (req, res) => {
@@ -25,7 +29,21 @@ app.listen(port, () => {
    console.log(`Todo App server: Listening on port ${port}`);
 });
 
-const mongoDB_Add = async (data) => {
+const mongodb_GetAll = async (res) => {
+   MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+
+      const data_base = db.db("todo-app");
+
+      data_base.collection("items").find().toArray(function(err, result) {
+         if (err) throw err;
+         res.send(result);
+         db.close();
+      });
+   });
+};
+
+const mongodb_Add = async (data) => {
    MongoClient.connect(url, (err, db) => {
       if (err) throw err;
 
@@ -41,16 +59,6 @@ const mongoDB_Add = async (data) => {
    });
 };
 
-const mongodb_GetAll = async (res) => {
-   MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
+const mongodb_remove = async () => {
 
-      const data_base = db.db("todo-app");
-
-      data_base.collection("items").find().toArray(function(err, result) {
-         if (err) throw err;
-         res.send(result);
-         db.close();
-      });
-   });
 };
