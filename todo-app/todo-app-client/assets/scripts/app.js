@@ -14,7 +14,9 @@
          const itemsArray = await getItemsFrom_db();
          addTodosToScreen(itemsArray);
       } catch {
-         showServerConnectError();
+         const className = "error-no-items-found";
+         const message = "Sorry, we could not connect to the server."
+         showNotification(className, message);
       }
    };
 
@@ -59,7 +61,7 @@
    const handleFormSubmit = async (event) => {
       event.preventDefault();
       const formData = getUsersInputFromForm();
-      (formData) ? (addItemTo_db(formData), createTodoItem(formData), incrementItemCount()) : showErrorNotification();
+      (formData) ? (addItemTo_db(formData), createTodoItem(formData), incrementItemCount()) : showUserInputErrorNotification();
       form.reset();
    };
 
@@ -69,6 +71,12 @@
    };
 
    const addTodosToScreen = (itemsArray) => {
+      if(itemsArray.length <= 0) {
+         const className = "no-posts";
+         const message = "You don't have any items to do yet. Add some more";
+         showNotification(className, message);
+         return;
+      }
       itemsArray.forEach((item) => {
          incrementItemCount();
          createTodoItem(item);
@@ -76,6 +84,8 @@
    };
 
    const createTodoItem = (inputValue) => {
+      removeNotificationMessages();
+
       const newItem = document.createElement("div");
       newItem.classList.add("todo-item");
 
@@ -105,7 +115,7 @@
       decreaseItemCount();
    };
 
-   const showErrorNotification = () => {
+   const showUserInputErrorNotification = () => {
       errorNotification.style.display = "block";
       hideErrorNotification();
    };
@@ -116,12 +126,12 @@
       }, 4000);
    };
 
-   const showServerConnectError = () => {
+   const showNotification = (className, message) => {
       const messageContainer = document.createElement("div");
-      messageContainer.classList.add("error-no-items-found");
+      messageContainer.classList.add(className);
       
       const messageContainerText = document.createElement("p");
-      messageContainerText.textContent = "Sorry, we could not connect to the server."
+      messageContainerText.textContent = message;
 
       messageContainer.append(messageContainerText);
       item_root.append(messageContainer);
@@ -135,6 +145,10 @@
    const decreaseItemCount = () => {
       item_count --;
       item_count_Element.innerHTML = item_count;
+   };
+
+   const removeNotificationMessages = () => {
+      console.log("Remove notification function needs work");
    };
 
    initialLoad();
