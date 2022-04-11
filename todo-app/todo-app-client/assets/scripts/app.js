@@ -68,7 +68,11 @@
       const itemParagraph = document.createElement("p");
       (typeof inputValue === "string") ? itemParagraph.textContent = inputValue : itemParagraph.textContent = inputValue.todo
 
+      const itemDeleteButton = document.createElement("span");
+      itemDeleteButton.classList.add("delete");
+
       newItem.append(itemParagraph);
+      newItem.append(itemDeleteButton);
       item_root.append(newItem);
    };
 
