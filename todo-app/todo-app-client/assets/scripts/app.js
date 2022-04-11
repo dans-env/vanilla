@@ -42,8 +42,18 @@
       });
    };
 
-   const removeItemFrom_db = () => {
-
+   const removeItemFrom_db = (textString) => {
+      const itemObject = {
+         "todo": textString
+      };
+      fetch(`http://localhost:${port}/remove-item`, {
+         method: 'Delete',
+         mode: "cors",
+         headers: {
+            "Content-Type": "application/json"
+         },
+         body: JSON.stringify(itemObject)
+      });
    };
 
    const handleFormSubmit = async (event) => {
@@ -90,7 +100,7 @@
 
    const deleteItem = (item) => {
       const todoItem = item.parentNode;
-      //removeItemFrom_db(todoItem.children[0].textContent);
+      removeItemFrom_db(todoItem.children[0].textContent);
       todoItem.remove();
       decreaseItemCount();
    };

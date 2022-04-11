@@ -59,6 +59,18 @@ const mongodb_Add = async (data) => {
    });
 };
 
-const mongodb_remove = async () => {
+const mongodb_remove = async (data) => {
+   MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
 
+      const data_base = db.db("todo-app");
+      const dataForDeletion = data;
+
+      data_base.collection("items").deleteOne(dataForDeletion, function(err, obj) {
+        if (err) throw err;
+
+        console.log("MongoDB - One object removed from collection: items");
+        db.close();
+      });
+    });
 };
