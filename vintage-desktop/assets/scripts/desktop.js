@@ -20,7 +20,15 @@ import { dragElement } from "./drag.js";
       setInterval(updateTime, 10000)
    };
 
+   const playStartUpSound = () => {
+      const audio = new Audio('../sounds/startup.mp3');
+      audio.play();
+   };
+
    const initialLoad = (desktop_icons) => {
+
+      playStartUpSound();
+
       desktop_icons.forEach(icon => {
          dragElement(icon.icon_element);
       });
