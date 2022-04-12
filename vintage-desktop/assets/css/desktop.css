@@ -13,6 +13,7 @@
 
 body {
    font-family: "Ms Sans Serif", sans-serif;
+   cursor: url("../images/default-cursor.png"), auto;
 }
 
 .desktop {
@@ -45,7 +46,7 @@ body {
    border-top: 2px solid #fff;
    border-right: 2px solid #000;
    border-bottom: 2px solid #000;
-   cursor: pointer;
+   cursor: url("../images/pointer.png"), auto;
 }
 
 .start.active {
@@ -61,6 +62,10 @@ body {
 
 .start--icon img {
    max-width: 26px;
+}
+
+.start--text {
+   font-size: 18px;
 }
 
 .start--menu {
@@ -90,8 +95,14 @@ body {
    transform: rotate(-90deg);
    height: 24px;
    width: 200px;
-   top: 0px;
-   left: -86px;
+   top: 299px;
+   left: -83px;
+   font-size: 28px;
+   color: #c0c0c0;
+}
+
+.start--menu .title--text h3 .white {
+   color: #fff;
 }
 
 .start--menu .menu {
@@ -99,8 +110,32 @@ body {
 }
 
 .start--menu .menu li {
-   min-width: 180px;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   min-width: 220px;
    padding: 10px 15px;
+}
+
+.start--menu .menu li:hover {
+   color: #fff;
+   background: #070085;
+}
+
+.start--menu .menu li .icon {
+   margin-right: 10px;
+}
+
+.start--menu .menu li.run {
+   border-bottom: 1px solid #959595;
+}
+
+.start--menu .menu li.shut-dowm {
+   border-top: 1px solid #fff;
+}
+
+.start--menu .menu li .icon img {
+   max-width: 40px;
 }
 
 .notifications {
