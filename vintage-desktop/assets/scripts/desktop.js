@@ -2,8 +2,8 @@ import { dragElement } from "./drag.js";
 
 (function desktop() {
 
+   const start_button = document.querySelector(".start");
    const time_element = document.querySelector(".time--text");
-
    const desktop_icons = [
       {icon_element: document.querySelector(".recycle-bin")},
       {icon_element: document.querySelector(".my-computer")}
@@ -20,15 +20,11 @@ import { dragElement } from "./drag.js";
       setInterval(updateTime, 10000)
    };
 
-   const playStartUpSound = () => {
-      const audio = new Audio('../sounds/startup.mp3');
-      audio.play();
-   };
+   start_button.addEventListener("click", function() {
+      (this.classList.contains("active")) ? this.classList.remove("active") : this.classList.add("active")
+   });
 
    const initialLoad = (desktop_icons) => {
-
-      playStartUpSound();
-
       desktop_icons.forEach(icon => {
          dragElement(icon.icon_element);
       });

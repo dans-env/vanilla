@@ -45,6 +45,14 @@ body {
    border-top: 2px solid #fff;
    border-right: 2px solid #000;
    border-bottom: 2px solid #000;
+   cursor: pointer;
+}
+
+.start.active {
+   border-left: 2px solid #000;
+   border-top: 2px solid #000;
+   border-right: 2px solid #fff;
+   border-bottom: 2px solid #fff;
 }
 
 .start--icon {
@@ -53,6 +61,46 @@ body {
 
 .start--icon img {
    max-width: 26px;
+}
+
+.start--menu {
+   display: none;
+   position: fixed;
+   bottom: 43px;
+   background: #c0c0c0;
+   border-left: 2px solid #fff;
+   border-top: 2px solid #fff;
+   border-right: 2px solid #000;
+   border-bottom: 2px solid #000;
+}
+
+.start.active ~ .start--menu {
+   display: flex;
+}
+
+.start--menu .title--text {
+   min-width: 40px;
+   height: 100%;
+   position: relative;
+   background-color: #808080;
+}
+
+.start--menu .title--text h3 {
+   position: absolute;
+   transform: rotate(-90deg);
+   height: 24px;
+   width: 200px;
+   top: 0px;
+   left: -86px;
+}
+
+.start--menu .menu {
+   list-style-type: none;
+}
+
+.start--menu .menu li {
+   min-width: 180px;
+   padding: 10px 15px;
 }
 
 .notifications {
