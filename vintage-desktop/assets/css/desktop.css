@@ -178,9 +178,32 @@ body {
    color: #fff;
 }
 
-.recycle-bin {
+.internet-explorer {
    position: absolute;
    top: 150px;
+   left: 10px;
+}
+
+.internet-explorer--icon {
+   margin-bottom: 10px;
+}
+
+.internet-explorer--icon img {
+   display: block;
+   margin: 0 auto;
+   max-width: 67px;
+}
+
+.internet-explorer--text span {
+   display: block;
+   text-align: center;
+   font-size: 16px;
+   color: #fff;
+}
+
+.recycle-bin {
+   position: absolute;
+   top: 290px;
    left: 10px;
 }
 
@@ -199,4 +222,46 @@ body {
    text-align: center;
    font-size: 16px;
    color: #fff;
+}
+
+.right-click-menu {
+   display: none;
+   position: absolute;
+   background: #c0b7bf;
+   border-left: 2px solid #fff;
+   border-top: 2px solid #fff;
+   border-right: 2px solid #000;
+   border-bottom: 2px solid #000;
+}
+
+.right-click-menu.active {
+   display: block;
+}
+
+.right-click-menu ul {
+   list-style: none;
+}
+
+.right-click-menu ul li {
+   margin: 10px 0;
+   padding: 10px 60px;
+}
+
+.right-click-menu ul li:first-child {
+   margin-top: 0;
+}
+
+.right-click-menu ul li:last-child {
+   margin-bottom: 0;
+}
+
+.right-click-menu ul li:hover {
+   color: #fff;
+   background: #070085;
+}
+
+.right-click-menu ul li.paste,
+.right-click-menu ul li.paste-shortcut {
+   color: #909090;
+   text-shadow: 0 0 1px #fff;
 }
