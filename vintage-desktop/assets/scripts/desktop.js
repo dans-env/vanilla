@@ -24,6 +24,44 @@ import { dragElement } from "./drag.js";
       });
    };
 
+   const createApplicationWindow = (title) => {
+      const parentElement = document.createElement("div");
+      const applicationWindowBody = `
+         <div class="application-window-title">
+            <h5>${title}</h5>
+            <div class="icons">
+               <span class="minimize"></span>
+               <span class="maximize"></span>
+               <span class="close"></span>
+            </div>
+         </div>
+         <div class="application-window-body">
+         
+         </div>
+         <div class="application-window-footer">
+         
+         </div>
+      `;
+
+      parentElement.classList.add("application-window");
+      parentElement.innerHTML = applicationWindowBody;
+      desktop.appendChild(parentElement);
+
+      addApplicationIconsEventListeners();
+   };
+
+   const addApplicationIconsEventListeners = () => {
+      const applicationClosebutton = document.querySelector("span.close");
+      applicationClosebutton.addEventListener("click", function() {
+         this.offsetParent.remove();
+      });
+   };
+
+
+   const destroyWindowApplication = () => {
+
+   };
+
    desktop.addEventListener("contextmenu", function(event) {
       event.preventDefault();
 
@@ -44,7 +82,7 @@ import { dragElement } from "./drag.js";
 
    desktop_icons.forEach(desktop_icon => {
       desktop_icon.addEventListener("dblclick", function() {
-         // Double click functionality stills needs work
+         createApplicationWindow(desktop_icon.querySelector("div:nth-child(2) span").textContent);
       });
    });
 

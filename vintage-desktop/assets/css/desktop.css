@@ -265,3 +265,48 @@ body {
    color: #909090;
    text-shadow: 0 0 1px #fff;
 }
+
+.application-window {
+   display: block;
+   position: absolute;
+   min-width: 600px;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border-left: 2px solid #fff;
+   border-top: 2px solid #fff;
+   border-right: 2px solid #000;
+   border-bottom: 2px solid #000;
+}
+
+.application-window-title {
+   display: flex;
+   align-content: center;
+   justify-content: space-between;
+   padding: 5px;
+   background: #808080;
+   border: 3px solid #c0c0c0;
+}
+
+.application-window-title h5 {
+   font-size: 18px;
+   list-height: 20px;
+   color: #c0c0c0;
+}
+
+.application-window-title .icons {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.application-window-title .icons span {
+   width: 20px;
+   height: 20px;
+   margin: 0 2px;
+   background-color: #c0c0c0;
+   border-left: 2px solid #fff;
+   border-top: 2px solid #fff;
+   border-right: 2px solid #000;
+   border-bottom: 2px solid #000;
+}
