@@ -52,14 +52,19 @@ import { dragElement } from "./drag.js";
 
    const addApplicationIconsEventListeners = () => {
       const applicationClosebutton = document.querySelector("span.close");
+      const applicationMaximisebutton = document.querySelector("span.maximize");
+
+      applicationMaximisebutton.addEventListener("click", function() {
+         this.offsetParent.style.width = "100%";
+         this.offsetParent.style.height = "100%";
+         this.offsetParent.style.top = 0;
+         this.offsetParent.style.left = 0;
+         this.offsetParent.style.transform = "unset";
+      });
+
       applicationClosebutton.addEventListener("click", function() {
          this.offsetParent.remove();
       });
-   };
-
-
-   const destroyWindowApplication = () => {
-
    };
 
    desktop.addEventListener("contextmenu", function(event) {

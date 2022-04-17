@@ -273,6 +273,7 @@ body {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   background: #fff;
    border-left: 2px solid #fff;
    border-top: 2px solid #fff;
    border-right: 2px solid #000;
@@ -309,4 +310,5 @@ body {
    border-top: 2px solid #fff;
    border-right: 2px solid #000;
    border-bottom: 2px solid #000;
+   cursor: url("../images/pointer.png"), auto;
 }
